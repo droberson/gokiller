@@ -44,9 +44,8 @@ shell commands to see execve being hijacked in real time.
 
 ```
 make
-sudo insmod rootkit.ko
+sudo insmod gokiller.ko
 lsmod
-sudo rmmod rootkit.ko
 sudo cp cp.sh /root/cp.sh
 sudo chmod +x /root/cp.sh
 ```
@@ -65,13 +64,12 @@ work. The script below outlines the process.
 
 ```
 #!/bin/bash
-NAME="rootkit"
+NAME="gokiller"
 DIR="/lib/modules/`uname -r`/kernel/drivers/$NAME/"
 sudo mkdir -p $DIR
 sudo cp $NAME.ko $DIR
 sudo depmod
-sudo bash -c 'cat << EOF > /etc/modules-load.d/rootkit.conf
-rootkit
+sudo bash -c 'cat << EOF > /etc/modules-load.d/gokiller.conf
 EOF'
 ```
 
